@@ -25,6 +25,7 @@ brew "libass"
 brew "libbluray"
 brew "ffmpeg"
 brew "youtube-dl"
+brew "yt-dlp"
 
 # ── Build Tools ───────────────────────────────────────────────────────────────
 brew "cmake"
@@ -37,17 +38,21 @@ brew "gobject-introspection"
 brew "shared-mime-info"
 
 # ── CLI Utilities ─────────────────────────────────────────────────────────────
+brew "mas"
 brew "tree"
 brew "httrack"
 
 # ── Creative & Design ─────────────────────────────────────────────────────────
 cask "adobe-creative-cloud"
+cask "bambu-studio"
 cask "blender"
 cask "figma"
 cask "processing"
 cask "storyboarder"
 
 # ── Video & Streaming ─────────────────────────────────────────────────────────
+cask "davinci-resolve"
+cask "iina"
 cask "obs"
 cask "streamlabs"
 cask "handbrake-app"
@@ -59,22 +64,37 @@ cask "spotify"
 
 # ── System Utilities ─────────────────────────────────────────────────────────
 cask "disk-drill"
+cask "dropbox"
+cask "logitech-options"
+cask "google-drive"
 
 # ── Productivity ──────────────────────────────────────────────────────────────
+cask "1password"
 cask "alfred"
 cask "easyfind"
 cask "keycastr"
+cask "notion"
+cask "snipaste"
 cask "sync"
 cask "the-unarchiver"
 
 # ── Communication ─────────────────────────────────────────────────────────────
 cask "discord"
 cask "slack"
+cask "whatsapp"
+cask "zoom"
 
 # ── AI & Dev Tools ────────────────────────────────────────────────────────────
 cask "claude"
 cask "google-chrome"
+cask "visual-studio-code"
+cask "zen-browser"
 cask "zxpinstaller"
+# aescripts + aeplugins Manager — manual install: https://aescripts.com/learn/aescripts-aeplugins-manager-app/
+
+# ── Mac App Store ─────────────────────────────────────────────────────────────
+mas "Keynote", id: 409183694
+mas "Magnet", id: 441258766
 
 # ── Global npm Packages ───────────────────────────────────────────────────────
 npm "@anthropic-ai/claude-code"
