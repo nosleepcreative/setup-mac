@@ -1,3 +1,4 @@
+
 tap "homebrew/cask-versions"
 
 # ── Languages & Runtimes ──────────────────────────────────────────────────────
@@ -77,6 +78,8 @@ cask "notion"
 cask "snipaste"
 cask "sync"
 cask "the-unarchiver"
+cask "mousepose"
+cask "cleanshot"
 
 # ── Communication ─────────────────────────────────────────────────────────────
 cask "discord"
