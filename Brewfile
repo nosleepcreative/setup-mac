@@ -98,6 +98,7 @@ cask "zxpinstaller"
 # ── Mac App Store ─────────────────────────────────────────────────────────────
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
+mas "Folder Quick Look", id: 6753110395
 
 # ── Global npm Packages ───────────────────────────────────────────────────────
 npm "@anthropic-ai/claude-code"
