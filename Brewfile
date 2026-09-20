@@ -80,6 +80,7 @@ cask "sync"
 cask "the-unarchiver"
 cask "mousepose"
 cask "cleanshot"
+cask "obsidian"
 
 # ── Communication ─────────────────────────────────────────────────────────────
 cask "discord"
