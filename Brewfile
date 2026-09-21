@@ -81,6 +81,7 @@ cask "the-unarchiver"
 cask "mousepose"
 cask "cleanshot"
 cask "obsidian"
+cask "jiggler"
 
 # ── Communication ─────────────────────────────────────────────────────────────
 cask "discord"
