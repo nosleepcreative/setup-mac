@@ -71,7 +71,8 @@ cask "google-drive"
 
 # ── Productivity ──────────────────────────────────────────────────────────────
 cask "1password"
-cask "alfred"
+# cask "alfred"
+cassk "raycast"
 cask "easyfind"
 cask "keycastr"
 cask "notion"
