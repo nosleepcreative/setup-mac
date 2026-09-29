@@ -19,6 +19,7 @@ The Brewfile has a few kinds of entries:
 
 ## Why use Homebrew?
 
+- **Great for contractors and freelancers.** If clients or studios hand you a new laptop for each job, you can get it ready to work on in one step, instead of rebuilding your setup from memory every time.
 - **Set up a new Mac in one go.** Run one command and walk away, instead of spending an afternoon downloading installers.
 - **Update everything at once.** `brew upgrade` updates your apps and tools together, so you don't have to click through each app's update prompt. Apps that update themselves (like Chrome) are skipped unless you add `--greedy`.
 - **Uninstall cleanly.** `brew uninstall --cask <app>` removes an app, and adding `--zap` also clears out its leftover settings files.
