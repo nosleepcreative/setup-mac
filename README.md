@@ -2,6 +2,8 @@
 
 A [Brewfile](Brewfile) for setting up a new Mac with my usual tools and apps.
 
+It's tailored for a **creative and motion designer**. Alongside everyday apps, it installs design and 3D tools (Adobe Creative Cloud, Figma, Blender), video and streaming apps (DaVinci Resolve, OBS, HandBrake), and command-line tools for working with images and video (`ffmpeg`, `imagemagick`, `yt-dlp`). It also includes handy extras like ZXPInstaller for installing Adobe extensions and KeyCastr for showing keystrokes in tutorials. Take what's useful and comment out the rest.
+
 ## What is Homebrew?
 
 [Homebrew](https://brew.sh) is like an App Store you use from the Terminal. Instead of visiting a dozen websites and dragging each app into Applications, you type one command and Homebrew downloads and installs it for you. It can also keep everything up to date with `brew upgrade`.
