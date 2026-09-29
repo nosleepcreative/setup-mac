@@ -2,6 +2,19 @@
 
 A [Brewfile](Brewfile) for setting up a new Mac with my usual tools and apps.
 
+## What is Homebrew?
+
+[Homebrew](https://brew.sh) is like an App Store you use from the Terminal. Instead of visiting a dozen websites and dragging each app into Applications, you type one command and Homebrew downloads and installs it for you. It can also keep everything up to date with `brew upgrade`.
+
+A **Brewfile** is a shopping list for Homebrew. It lists every app and tool you want, and `brew bundle` installs the whole list in one go. That makes setting up a new Mac mostly automatic.
+
+The Brewfile has a few kinds of entries:
+
+- `brew`: command-line tools, like `ffmpeg` or `yt-dlp`
+- `cask`: regular Mac apps, like Figma, Slack or Chrome
+- `mas`: Mac App Store apps, like Keynote
+- `npm`: JavaScript tools, installed with Node's package manager
+
 ## Usage
 
 1. Install [Homebrew](https://brew.sh) (on an Intel Mac, see [Intel Macs](#intel-macs) below).
