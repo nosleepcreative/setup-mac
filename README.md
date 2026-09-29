@@ -17,6 +17,14 @@ The Brewfile has a few kinds of entries:
 - `mas`: Mac App Store apps, like Keynote
 - `npm`: JavaScript tools, installed with Node's package manager
 
+## Why use Homebrew?
+
+- **Set up a new Mac in one go.** Run one command and walk away, instead of spending an afternoon downloading installers.
+- **Update everything at once.** `brew upgrade` updates your apps and tools together, so you don't have to click through each app's update prompt. Apps that update themselves (like Chrome) are skipped unless you add `--greedy`.
+- **Uninstall cleanly.** `brew uninstall --cask <app>` removes an app, and adding `--zap` also clears out its leftover settings files.
+- **Get tools you can't download normally.** Many command-line tools like `ffmpeg` and `imagemagick` have no simple Mac installer. Homebrew handles them, along with everything they depend on.
+- **Keep a record of your setup.** The Brewfile is a list of everything you use. Keep it on GitHub and you can rebuild your Mac anytime, or share your setup with teammates.
+
 ## Usage
 
 1. Install [Homebrew](https://brew.sh) (on an Intel Mac, see [Intel Macs](#intel-macs) below).
