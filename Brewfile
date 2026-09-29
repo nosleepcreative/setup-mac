@@ -1,8 +1,8 @@
 
-tap "homebrew/cask-versions"
+# tap "homebrew/cask-versions"  # retired by Homebrew; no longer needed
 
 # ── Languages & Runtimes ──────────────────────────────────────────────────────
-brew "python@3.8", link: false
+# brew "python@3.8", link: false  # removed from Homebrew — use `uv python install 3.8` instead
 brew "python@3.9", link: false
 brew "node", link: false
 brew "nvm"
@@ -25,7 +25,7 @@ brew "ghostscript"
 brew "libass"
 brew "libbluray"
 brew "ffmpeg"
-brew "youtube-dl"
+# brew "youtube-dl"  # removed from Homebrew; yt-dlp replaces it
 brew "yt-dlp"
 
 # ── Build Tools ───────────────────────────────────────────────────────────────
@@ -52,7 +52,7 @@ cask "processing"
 cask "storyboarder"
 
 # ── Video & Streaming ─────────────────────────────────────────────────────────
-cask "davinci-resolve"
+# cask "davinci-resolve"  # not on Homebrew — download from blackmagicdesign.com
 cask "iina"
 cask "obs"
 cask "streamlabs"
@@ -66,13 +66,13 @@ cask "spotify"
 # ── System Utilities ─────────────────────────────────────────────────────────
 cask "disk-drill"
 cask "dropbox"
-cask "logitech-options"
+cask "logi-options+"
 cask "google-drive"
 
 # ── Productivity ──────────────────────────────────────────────────────────────
 cask "1password"
 # cask "alfred"
-cassk "raycast"
+# cask "raycast"  # Homebrew version requires Apple Silicon
 cask "easyfind"
 cask "keycastr"
 cask "notion"
@@ -94,7 +94,7 @@ cask "zoom"
 cask "claude"
 cask "google-chrome"
 cask "visual-studio-code"
-cask "zen-browser"
+cask "zen"
 cask "zxpinstaller"
 # aescripts + aeplugins Manager — manual install: https://aescripts.com/learn/aescripts-aeplugins-manager-app/
 
