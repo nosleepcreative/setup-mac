@@ -3,8 +3,8 @@
 
 # ── Languages & Runtimes ──────────────────────────────────────────────────────
 # brew "python@3.8", link: false  # removed from Homebrew — use `uv python install 3.8` instead
-brew "python@3.9", link: false
-brew "node", link: false
+# brew "python@3.9", link: false  # deprecated by Homebrew — use `uv python install 3.9` instead
+brew "node"
 brew "nvm"
 brew "uv"
 
@@ -48,6 +48,7 @@ cask "adobe-creative-cloud"
 cask "bambu-studio"
 cask "blender"
 cask "figma"
+cask "maxon"  # Maxon App: installs Cinema 4D, Red Giant, Redshift, ZBrush
 cask "processing"
 cask "storyboarder"
 
@@ -91,7 +92,9 @@ cask "whatsapp"
 cask "zoom"
 
 # ── AI & Dev Tools ────────────────────────────────────────────────────────────
-cask "claude"
+# Work laptops may come with Claude already installed. Uncomment these on a personal Mac.
+# cask "claude"       # Claude desktop app
+# cask "claude-code"  # Claude Code in the terminal
 cask "google-chrome"
 cask "visual-studio-code"
 cask "zen"
@@ -104,7 +107,6 @@ mas "Magnet", id: 441258766
 mas "Folder Quick Look", id: 6753110395
 
 # ── Global npm Packages ───────────────────────────────────────────────────────
-npm "@anthropic-ai/claude-code"
 npm "corepack"
 npm "dembrandt"
 npm "gltf-pipeline"
