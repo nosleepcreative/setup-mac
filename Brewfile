@@ -41,7 +41,7 @@ brew "shared-mime-info"
 # ── CLI Utilities ─────────────────────────────────────────────────────────────
 brew "mas"
 brew "tree"
-brew "httrack"
+# brew "httrack"
 
 # ── Creative & Design ─────────────────────────────────────────────────────────
 cask "adobe-creative-cloud"
@@ -56,7 +56,7 @@ cask "storyboarder"
 # cask "davinci-resolve"  # not on Homebrew — download from blackmagicdesign.com
 cask "iina"
 cask "obs"
-cask "streamlabs"
+# cask "streamlabs"
 cask "handbrake-app"
 cask "clipgrab"
 cask "vlc"
@@ -72,12 +72,11 @@ cask "google-drive"
 
 # ── Productivity ──────────────────────────────────────────────────────────────
 cask "1password"
-# cask "alfred"
+cask "alfred"
 # cask "raycast"  # Homebrew version requires Apple Silicon
 cask "easyfind"
 cask "keycastr"
 cask "notion"
-cask "snipaste"
 cask "sync"
 cask "the-unarchiver"
 cask "mousepose"
