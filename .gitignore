@@ -1,0 +1,4 @@
+installers/*
+!installers/.gitkeep
+*.dmg
+*.pkg
