@@ -44,6 +44,7 @@ The Brewfile has a few kinds of entries:
 - cleans up the Dock
 - frees up ⌘Space
 - changes Finder, keyboard and other Mac settings (see [Mac settings](#mac-settings))
+- links the After Effects Scripts folder into `~/Documents/Adobe`
 
 It asks for your password a few times. You can run it again. Homebrew skips anything that's already installed, but the Dock gets reset to Finder and Safari each time.
 
@@ -53,38 +54,12 @@ To install only the Brewfile:
 brew bundle --file=Brewfile
 ```
 
-## Clean up the Dock
-
-A new Mac comes with a Dock full of Apple apps. [dock.sh](dock.sh) clears it down to just Finder and Safari, removes the Downloads stack, and hides the recent apps section:
-
-```bash
-zsh dock.sh
-```
-
-It saves your current layout to a `dock-backup-<date>.plist` file in your home folder first. To put the old Dock back, use the file name the script printed:
-
-```bash
-defaults import com.apple.dock ~/dock-backup-<date>.plist && killall Dock
-```
-
-Apps that are open still show in the Dock until you quit them. Finder and Trash always stay.
-
-## Free up ⌘Space
-
-If you use Raycast or Alfred, [spotlight.sh](spotlight.sh) turns off Spotlight's ⌘Space shortcut so the launcher can use it instead:
-
-```bash
-bash spotlight.sh
-```
-
-Then set ⌘Space as the shortcut in Raycast or Alfred's settings. Spotlight still opens from the magnifying glass in the menu bar. To turn the shortcut back on, go to System Settings → Keyboard → Keyboard Shortcuts → Spotlight.
-
 ## Mac settings
 
-[macos.sh](macos.sh) changes a few settings that get in the way of design work:
+[macos.sh](scripts/macos.sh) changes a few settings that get in the way of design work:
 
 ```bash
-zsh macos.sh
+zsh scripts/macos.sh
 ```
 
 - **Finder:** shows file extensions, the folder path and free space, uses list view with folders first, searches the current folder, and shows `~/Library` so you can find plugin and preset folders
@@ -95,6 +70,44 @@ zsh macos.sh
 - **Screenshots:** saved to `~/Screenshots` instead of the Desktop, without the drop shadow
 
 Log out and back in for the keyboard changes to work. Each line in the script has a comment, so delete any you don't want before running it.
+
+### Clean up the Dock
+
+A new Mac comes with a Dock full of Apple apps. [dock.sh](scripts/dock.sh) clears it down to just Finder and Safari, removes the Downloads stack, and hides the recent apps section:
+
+```bash
+zsh scripts/dock.sh
+```
+
+It saves your current layout to a `dock-backup-<date>.plist` file in your home folder first. To put the old Dock back, use the file name the script printed:
+
+```bash
+defaults import com.apple.dock ~/dock-backup-<date>.plist && killall Dock
+```
+
+Apps that are open still show in the Dock until you quit them. Finder and Trash always stay.
+
+### Free up ⌘Space
+
+If you use Raycast or Alfred, [spotlight.sh](scripts/spotlight.sh) turns off Spotlight's ⌘Space shortcut so the launcher can use it instead:
+
+```bash
+bash scripts/spotlight.sh
+```
+
+Then set ⌘Space as the shortcut in Raycast or Alfred's settings. Spotlight still opens from the magnifying glass in the menu bar. To turn the shortcut back on, go to System Settings → Keyboard → Keyboard Shortcuts → Spotlight.
+
+### After Effects Scripts folder
+
+After Effects keeps its scripts inside the app, at `/Applications/Adobe After Effects 20xx/Scripts`. [ae-scripts-link.sh](scripts/ae-scripts-link.sh) puts a link to that folder in `~/Documents/Adobe/After Effects 20xx` (the newest version you have), so it sits next to your presets:
+
+```bash
+zsh scripts/ae-scripts-link.sh
+```
+
+The real folder has to stay inside the app, because that's the only place After Effects loads scripts from. It belongs to the system, so Finder asks for your password when you add scripts through the link.
+
+The `~/Documents` folder only appears after you open After Effects once. If it's missing, open After Effects and run the script again.
 
 ## Intel Macs
 
@@ -128,12 +141,6 @@ sudo rm -rf /usr/local/Homebrew
 
 Only do this when Homebrew isn't working yet. It deletes the Homebrew installation. If you have a working Homebrew you want to remove cleanly, use the official [uninstall script](https://github.com/Homebrew/install#uninstall-homebrew) instead.
 
-### Apple Silicon–only casks
-
-Some casks don't install on Intel and are commented out in the Brewfile:
-
-- `raycast`: the Homebrew version requires Apple Silicon.
-
 ## Manual installs
 
 These aren't available through Homebrew:
@@ -145,13 +152,13 @@ These aren't available through Homebrew:
 Download their `.dmg` or `.pkg` files into the `installers/` folder. If they're there before you run `setup.sh`, it installs them for you. Otherwise, install them all in one go:
 
 ```bash
-zsh install-manual.sh
+zsh scripts/install-manual.sh
 ```
 
 Or install just one:
 
 ```bash
-zsh install-manual.sh "installers/aescripts + aeplugins manager (setup).dmg"
+zsh scripts/install-manual.sh "installers/aescripts + aeplugins manager (setup).dmg"
 ```
 
 For each file, the script either copies the app into Applications, runs the `.pkg` (macOS asks for your password), or opens the app's own installer and waits for you to finish it.

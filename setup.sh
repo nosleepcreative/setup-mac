@@ -38,20 +38,23 @@ brew bundle --file=Brewfile || failed_bundle=1
 step "Manual installers"
 installers=( installers/*.(dmg|pkg) )
 if (( $#installers )); then
-  zsh install-manual.sh
+  zsh scripts/install-manual.sh
 else
   echo "Nothing in installers/. Skipping."
 fi
 
 # ── Mac settings ──────────────────────────────────────────────────────────────
 step "Dock"
-zsh dock.sh
+zsh scripts/dock.sh
 
 step "Spotlight shortcut"
-bash spotlight.sh
+bash scripts/spotlight.sh
 
 step "Finder, keyboard and other settings"
-zsh macos.sh
+zsh scripts/macos.sh
+
+step "After Effects Scripts folder"
+zsh scripts/ae-scripts-link.sh
 
 # ── Done ──────────────────────────────────────────────────────────────────────
 step "Done"

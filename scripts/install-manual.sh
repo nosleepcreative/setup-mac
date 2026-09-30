@@ -8,7 +8,7 @@ set -e
 setopt extended_glob null_glob
 
 files=( ${@:A} )
-cd "${0:A:h}"
+cd "${0:A:h:h}"  # repo root, where installers/ is
 (( $#files )) || files=( installers/*.(dmg|pkg) )
 
 if (( ! $#files )); then
