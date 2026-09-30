@@ -146,8 +146,8 @@ Only do this when Homebrew isn't working yet. It deletes the Homebrew installati
 These aren't available through Homebrew:
 
 - [DaVinci Resolve](https://www.blackmagicdesign.com/products/davinciresolve)
-- [aescripts + aeplugins Manager](https://aescripts.com/learn/aescripts-aeplugins-manager-app/)
-- [Overlord](https://www.battleaxe.co/overlord): sends shapes from Illustrator straight into After Effects
+- [aescripts + aeplugins Manager](https://aescripts.com/learn/aescripts-aeplugins-manager-app/) ([download .dmg](https://updates.aescripts.com/updater/mac/aescripts%20+%20aeplugins%20manager%20(setup).dmg))
+- [Overlord](https://www.battleaxe.co/overlord) ([download .dmg](https://overlord-release.battleaxe.co/download/dmg)): sends shapes from Illustrator straight into After Effects
 
 Download their `.dmg` or `.pkg` files into the `installers/` folder. If they're there before you run `setup.sh`, it installs them for you. Otherwise, install them all in one go:
 
