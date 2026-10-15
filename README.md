@@ -1,8 +1,10 @@
 # setup-mac
 
-A [Brewfile](Brewfile) for setting up a new Mac with my usual tools and apps.
+A [Brewfile](Brewfile) and a few scripts for setting up a new Mac.
 
-It's tailored for a **creative and motion designer**. Alongside everyday apps, it installs design and 3D tools (Adobe Creative Cloud, Figma, Blender, Cinema 4D), video and streaming apps (DaVinci Resolve, OBS, HandBrake), and command-line tools for working with images and video (`ffmpeg`, `imagemagick`, `yt-dlp`). It also includes handy extras like ZXPInstaller for installing Adobe extensions and KeyCastr for showing keystrokes in tutorials. Take what's useful and comment out the rest.
+It's a starting point for a **creative and motion designer**. Alongside everyday apps, it installs design and 3D tools (Adobe Creative Cloud, Figma, Blender), video apps (HandBrake, IINA, VLC), and command-line tools for working with video (`ffmpeg`, `yt-dlp`). It also includes handy extras like ZXPInstaller for installing Adobe extensions and KeyCastr for showing keystrokes in tutorials. Take what's useful and comment out the rest.
+
+My own extras sit on top, in [Brewfile.personal](Brewfile.personal) (see [Personal apps](#personal-apps)).
 
 ## What is Homebrew?
 
@@ -26,6 +28,32 @@ The Brewfile has a few kinds of entries:
 - 🛠️ **Get tools you can't download normally.** Many command-line tools like `ffmpeg` and `imagemagick` have no simple Mac installer. Homebrew handles them, along with everything they depend on.
 - 📋 **Keep a record of your setup.** The Brewfile is a list of everything you use. Keep it on GitHub and you can rebuild your Mac anytime, or share your setup with teammates.
 
+## Before you wipe your old Mac
+
+Make a list of what's installed, so nothing gets forgotten on the new one. Save it somewhere that isn't the Mac you're wiping, like iCloud Drive, Dropbox or a USB drive.
+
+If the old Mac already has Homebrew, this writes everything it installed, plus your App Store apps, into a Brewfile on your Desktop:
+
+```bash
+brew bundle dump --file=~/Desktop/Brewfile.old
+```
+
+Then list every app, including the ones you downloaded from websites:
+
+```bash
+ls /Applications > ~/Desktop/apps.txt
+```
+
+Compare those files with this repo's Brewfiles, and add anything you want to [Brewfile.personal](Brewfile.personal). An app that isn't on Homebrew goes under [Manual installs](#manual-installs).
+
+To check what's installed at any point:
+
+```bash
+brew list --cask                      # apps installed with Homebrew
+brew leaves --installed-on-request    # command-line tools you installed yourself
+mas list                              # Mac App Store apps
+```
+
 ## Usage
 
 1. Sign into the App Store app, so the `mas` entries can install.
@@ -39,10 +67,10 @@ The Brewfile has a few kinds of entries:
 [setup.sh](setup.sh) does everything in order:
 
 - installs Homebrew, if it isn't already
-- installs everything in the Brewfile
+- installs everything in the Brewfile, then `Brewfile.personal` if it's there
 - runs anything in `installers/` (see [Manual installs](#manual-installs))
 - cleans up the Dock
-- frees up ⌘Space
+- frees up ⌘Space, if Alfred or Raycast is installed
 - changes Finder, keyboard and other Mac settings (see [Mac settings](#mac-settings))
 - links the After Effects Scripts folder into `~/Documents/Adobe`
 
@@ -52,6 +80,18 @@ To install only the Brewfile:
 
 ```bash
 brew bundle --file=Brewfile
+```
+
+## Personal apps
+
+The main [Brewfile](Brewfile) is meant to suit most designers. [Brewfile.personal](Brewfile.personal) is my own list on top of it: Cinema 4D, Bambu Studio, Obsidian, OBS and so on. `setup.sh` installs it after the main Brewfile, but only if the file exists.
+
+If you're using this repo for your own Mac, either delete `Brewfile.personal` or replace its contents with your own extras. Keeping your additions in that file, rather than editing the main Brewfile, makes it easy to pull in updates to the main list later.
+
+To install only the personal list:
+
+```bash
+brew bundle --file=Brewfile.personal
 ```
 
 ## Mac settings

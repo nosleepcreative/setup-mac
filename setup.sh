@@ -1,5 +1,6 @@
 #!/bin/zsh
-# Set up a new Mac in one go: Homebrew, the Brewfile, manual installers, the Dock, Spotlight and Mac settings.
+# Set up a new Mac in one go: Homebrew, the Brewfile (plus Brewfile.personal if it's there), manual installers,
+# the Dock, Spotlight and Mac settings.
 # Safe to run again: installed apps are skipped, but the Dock gets reset each time.
 #
 #   zsh setup.sh
@@ -34,6 +35,11 @@ step "Installing the Brewfile (this takes a while)"
 # Keep going if a few items fail, e.g. App Store apps when you're not signed in
 brew bundle --file=Brewfile || failed_bundle=1
 
+if [[ -f Brewfile.personal ]]; then
+  step "Installing Brewfile.personal"
+  brew bundle --file=Brewfile.personal || failed_bundle=1
+fi
+
 # ── Manual installers ─────────────────────────────────────────────────────────
 step "Manual installers"
 installers=( installers/*.(dmg|pkg) )
@@ -48,7 +54,12 @@ step "Dock"
 zsh scripts/dock.sh
 
 step "Spotlight shortcut"
-bash scripts/spotlight.sh
+launchers=( /Applications/(Alfred*|Raycast).app )
+if (( $#launchers )); then
+  bash scripts/spotlight.sh
+else
+  echo "No Alfred or Raycast installed. Leaving ⌘Space for Spotlight."
+fi
 
 step "Finder, keyboard and other settings"
 zsh scripts/macos.sh
@@ -61,6 +72,7 @@ step "Done"
 if (( failed_bundle )); then
   echo "Some Brewfile items didn't install. Sign into the App Store if needed, then run:"
   echo "  brew bundle --file=Brewfile"
+  [[ -f Brewfile.personal ]] && echo "  brew bundle --file=Brewfile.personal"
 fi
 echo "Log out and back in so every change takes effect."
 echo "Still to do by hand: see Manual installs in the README."

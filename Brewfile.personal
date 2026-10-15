@@ -1,0 +1,79 @@
+# Desmond's extras, installed by setup.sh after the main Brewfile.
+# Delete this file, or swap in your own list, if you're setting up your Mac.
+
+# ── Languages & Runtimes ──────────────────────────────────────────────────────
+# brew "python@3.8", link: false  # removed from Homebrew — use `uv python install 3.8` instead
+# brew "python@3.9", link: false  # deprecated by Homebrew — use `uv python install 3.9` instead
+brew "node"
+brew "nvm"
+brew "uv"
+
+# ── Image Processing ──────────────────────────────────────────────────────────
+brew "freetype"
+brew "fontconfig"
+brew "harfbuzz"
+brew "openjpeg"
+brew "webp"
+brew "leptonica"
+brew "tesseract"
+brew "libheif"
+brew "imagemagick"
+brew "pngquant"
+brew "ghostscript"
+
+# ── Media & Video ─────────────────────────────────────────────────────────────
+brew "libass"
+brew "libbluray"
+# brew "youtube-dl"  # removed from Homebrew; yt-dlp replaces it
+
+# ── CLI Utilities ─────────────────────────────────────────────────────────────
+brew "tree"
+
+# ── Build Tools & Libraries ───────────────────────────────────────────────────
+brew "cmake"
+brew "cask"
+brew "uncrustify"
+brew "glib"
+brew "gobject-introspection"
+brew "shared-mime-info"
+# brew "httrack"
+
+# ── Creative & Design ─────────────────────────────────────────────────────────
+cask "bambu-studio"
+cask "maxon"  # Maxon App: installs Cinema 4D, Red Giant, Redshift, ZBrush
+cask "processing"
+cask "storyboarder"
+
+# ── Video & Streaming ─────────────────────────────────────────────────────────
+cask "obs"
+# cask "streamlabs"
+cask "clipgrab"
+
+# ── System Utilities ─────────────────────────────────────────────────────────
+cask "logi-options+"
+
+# ── Productivity ──────────────────────────────────────────────────────────────
+cask "1password"
+cask "easyfind"
+cask "notion"
+cask "sync"
+cask "mousepose"
+cask "cleanshot"
+cask "obsidian"
+cask "jiggler"
+
+# ── Communication ─────────────────────────────────────────────────────────────
+cask "discord"
+cask "whatsapp"
+
+# ── Browsers ──────────────────────────────────────────────────────────────────
+cask "zen"
+
+# ── Mac App Store ─────────────────────────────────────────────────────────────
+mas "Magnet", id: 441258766
+mas "Folder Quick Look", id: 6753110395
+
+# ── Global npm Packages ───────────────────────────────────────────────────────
+npm "corepack"
+npm "dembrandt"
+npm "gltf-pipeline"
