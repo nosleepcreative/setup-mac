@@ -1,5 +1,5 @@
 #!/bin/zsh
-# Set up a new Mac in one go: Homebrew, the Brewfile (plus Brewfile.personal if it's there), manual installers,
+# Set up a new Mac in one go: Homebrew, the Brewfile (or personal/Brewfile if it's there), manual installers,
 # the Dock, Spotlight and Mac settings.
 # Safe to run again: installed apps are skipped, but the Dock gets reset each time.
 #
@@ -17,7 +17,7 @@ if [[ $(uname -m) == arm64 ]]; then brew_bin=/opt/homebrew/bin/brew; else brew_b
 
 if [[ ! -x $brew_bin ]]; then
   if [[ $(uname -m) != arm64 ]]; then
-    echo "Intel Mac: install Homebrew with the .pkg first (see README → Intel Macs), then run this again."
+    echo "Intel Mac: install Homebrew with the .pkg first (see README → Usage → Install just the apps), then run this again."
     exit 1
   fi
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -31,14 +31,13 @@ fi
 brew --version | head -1
 
 # ── Apps and tools ────────────────────────────────────────────────────────────
-step "Installing the Brewfile (this takes a while)"
-# Keep going if a few items fail, e.g. App Store apps when you're not signed in
-brew bundle --file=Brewfile || failed_bundle=1
+# personal/Brewfile includes the main Brewfile, so use it instead when it's here
+brewfile=Brewfile
+[[ -f personal/Brewfile ]] && brewfile=personal/Brewfile
 
-if [[ -f Brewfile.personal ]]; then
-  step "Installing Brewfile.personal"
-  brew bundle --file=Brewfile.personal || failed_bundle=1
-fi
+step "Installing $brewfile (this takes a while)"
+# Keep going if a few items fail, e.g. App Store apps when you're not signed in
+brew bundle --file=$brewfile || failed_bundle=1
 
 # ── Manual installers ─────────────────────────────────────────────────────────
 step "Manual installers"
@@ -71,8 +70,7 @@ zsh scripts/ae-scripts-link.sh
 step "Done"
 if (( failed_bundle )); then
   echo "Some Brewfile items didn't install. Sign into the App Store if needed, then run:"
-  echo "  brew bundle --file=Brewfile"
-  [[ -f Brewfile.personal ]] && echo "  brew bundle --file=Brewfile.personal"
+  echo "  brew bundle --file=$brewfile"
 fi
 echo "Log out and back in so every change takes effect."
 echo "Still to do by hand: see Manual installs in the README."

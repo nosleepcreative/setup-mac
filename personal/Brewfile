@@ -1,0 +1,79 @@
+# Desmond's setup: everything in the main Brewfile, plus the extras below.
+# setup.sh uses this file instead of the main Brewfile when it's here.
+# Delete it, or swap in your own extras, if you're setting up your Mac.
+
+instance_eval File.read(File.join(__dir__, "..", "Brewfile"))
+
+# ── Creative & Design ─────────────────────────────────────────────────────────
+cask "bambu-studio"
+
+# ── Essentials ────────────────────────────────────────────────────────────────
+cask "zen"
+cask "1password"
+cask "sync"
+cask "discord"
+cask "whatsapp"
+
+# ── Video & Streaming ─────────────────────────────────────────────────────────
+cask "obs"
+
+# ── Productivity ──────────────────────────────────────────────────────────────
+cask "easyfind"
+cask "notion"
+cask "obsidian"
+
+# ── System Utilities ─────────────────────────────────────────────────────────
+cask "logi-options+"
+
+# ── Mac App Store ─────────────────────────────────────────────────────────────
+mas "Magnet", id: 441258766
+mas "Folder Quick Look", id: 6753110395
+mas "Spreadsheet", id: 1518721142  # shows as FormMaster in Applications
+mas "Pro Mouse – Cursor Highlighter", id: 1505869474
+
+# ── Languages & Runtimes ──────────────────────────────────────────────────────
+# brew "python@3.8", link: false  # removed from Homebrew — use `uv python install 3.8` instead
+# brew "python@3.9", link: false  # deprecated by Homebrew — use `uv python install 3.9` instead
+brew "node"
+brew "nvm"
+brew "uv"
+
+# ── Image Processing ──────────────────────────────────────────────────────────
+brew "freetype"     # renders fonts (used by imagemagick)
+brew "fontconfig"   # finds and configures fonts (used by imagemagick)
+brew "harfbuzz"     # shapes text for correct letter spacing (used by imagemagick)
+brew "openjpeg"     # reads and writes JPEG 2000 images
+brew "webp"         # reads and writes WebP images
+brew "leptonica"    # image analysis library (used by tesseract)
+brew "tesseract"    # reads text from images (OCR)
+brew "libheif"      # reads and writes HEIC images, like iPhone photos
+brew "imagemagick"  # convert, resize and edit images from the command line
+brew "pngquant"     # shrinks PNG files with little visible quality loss
+brew "ghostscript"  # reads PDF and EPS files (lets imagemagick convert them)
+
+# ── Media & Video ─────────────────────────────────────────────────────────────
+brew "libass"
+brew "libbluray"
+
+# ── CLI Utilities ─────────────────────────────────────────────────────────────
+brew "tree"
+
+# ── Build Tools & Libraries ───────────────────────────────────────────────────
+brew "cmake"
+brew "cask"
+brew "uncrustify"
+brew "glib"
+brew "gobject-introspection"
+brew "shared-mime-info"
+# brew "httrack"
+
+# ── Global npm Packages ───────────────────────────────────────────────────────
+npm "corepack"
+npm "dembrandt"
+npm "gltf-pipeline"
+
+# ── Python Tools (installed with uv) ──────────────────────────────────────────
+uv "whisper-ctranslate2"  # transcribe audio and video into subtitles
+
+# ── VS Code Extensions ────────────────────────────────────────────────────────
+vscode "anthropic.claude-code"

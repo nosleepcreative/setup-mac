@@ -1,5 +1,5 @@
 # A starting point for a creative or motion designer's Mac.
-# Personal extras live in Brewfile.personal, which setup.sh installs after this one.
+# My personal extras are in personal/Brewfile, which loads this file and adds to it.
 
 # tap "homebrew/cask-versions"  # retired by Homebrew; no longer needed
 
@@ -7,6 +7,7 @@
 cask "adobe-creative-cloud"
 cask "blender"
 cask "figma"
+cask "maxon"  # Maxon App: installs Cinema 4D, Red Giant, Redshift, ZBrush
 cask "zxpinstaller"
 # aescripts + aeplugins Manager — manual install: https://aescripts.com/learn/aescripts-aeplugins-manager-app/
 
@@ -25,11 +26,15 @@ cask "disk-drill"  # recover deleted files and check drive health
 cask "iina"           # video player that opens almost any format
 cask "handbrake-app"  # shrink and convert video files
 cask "vlc"            # backup player for files IINA struggles with
+cask "clipgrab"       # download videos from YouTube and other sites, with a simple app
 
 # ── Productivity ──────────────────────────────────────────────────────────────
-cask "alfred"    # launch apps and search files with ⌘Space
+cask "alfred"     # launch apps and search files with ⌘Space
 # cask "raycast"  # Homebrew version requires Apple Silicon
-cask "keycastr"  # shows your keystrokes on screen, for tutorials
+cask "snipaste"   # free screenshots you can pin on screen as floating references
+cask "cleanshot"  # screenshots and screen recordings with annotation (paid)
+cask "jiggler"    # keeps the Mac awake during long renders and uploads
+cask "keycastr"   # shows your keystrokes on screen, for tutorials
 
 # ── AI & Dev Tools ────────────────────────────────────────────────────────────
 # Work laptops may come with Claude already installed. Uncomment these on a personal Mac.

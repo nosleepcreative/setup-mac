@@ -1,206 +1,195 @@
 # setup-mac
 
-A [Brewfile](Brewfile) and a few scripts for setting up a new Mac.
+A [Brewfile](Brewfile) and a few scripts for setting up a new Mac, aimed at **creative and motion designers**.
 
-It's a starting point for a **creative and motion designer**. Alongside everyday apps, it installs design and 3D tools (Adobe Creative Cloud, Figma, Blender), video apps (HandBrake, IINA, VLC), and command-line tools for working with video (`ffmpeg`, `yt-dlp`). It also includes handy extras like ZXPInstaller for installing Adobe extensions and KeyCastr for showing keystrokes in tutorials. Take what's useful and comment out the rest.
+It installs design and 3D tools (Adobe Creative Cloud, Figma, Blender, Cinema 4D), video apps (HandBrake, IINA, VLC), everyday apps, and command-line video tools (`ffmpeg`, `gifski`, `yt-dlp`). Take what's useful and comment out the rest.
 
-My own extras sit on top, in [Brewfile.personal](Brewfile.personal) (see [Personal apps](#personal-apps)).
+My own extras are in [personal/Brewfile](personal/Brewfile) (see [Personal apps](#personal-apps)).
 
 ## What is Homebrew?
 
-[Homebrew](https://brew.sh) is like an App Store you use from the Terminal. Instead of visiting a dozen websites and dragging each app into Applications, you type one command and Homebrew downloads and installs it for you. It can also keep everything up to date with `brew upgrade`.
+[Homebrew](https://brew.sh) is an App Store you use from the Terminal: one command downloads and installs an app, and `brew upgrade` keeps everything up to date.
 
-A **Brewfile** is a shopping list for Homebrew. It lists every app and tool you want, and `brew bundle` installs the whole list in one go. That makes setting up a new Mac mostly automatic.
+A **Brewfile** is a shopping list for Homebrew. `brew bundle` installs the whole list in one go. It has a few kinds of entries:
 
-The Brewfile has a few kinds of entries:
-
-- `brew`: command-line tools, like `ffmpeg` or `yt-dlp`
-- `cask`: regular Mac apps, like Figma, Slack or Chrome
-- `mas`: Mac App Store apps, like Keynote
-- `npm`: JavaScript tools, installed with Node's package manager
+- `brew`: command-line tools, like `ffmpeg`
+- `cask`: regular Mac apps, like Figma or Chrome
+- `mas`: Mac App Store apps, like Magnet
+- `npm`: JavaScript tools
 
 ## Why use Homebrew?
 
-- 💼 **Great for contractors and freelancers.** If clients or studios hand you a new laptop for each job, you can get it ready to work on in one step, instead of rebuilding your setup from memory every time.
-- ⚡ **Set up a new Mac in one go.** Run one command and walk away, instead of spending an afternoon downloading installers.
-- 🔄 **Update everything at once.** `brew upgrade` updates your apps and tools together, so you don't have to click through each app's update prompt. Apps that update themselves (like Chrome) are skipped unless you add `--greedy`.
-- 🧹 **Uninstall cleanly.** `brew uninstall --cask <app>` removes an app, and adding `--zap` also clears out its leftover settings files.
-- 🛠️ **Get tools you can't download normally.** Many command-line tools like `ffmpeg` and `imagemagick` have no simple Mac installer. Homebrew handles them, along with everything they depend on.
-- 📋 **Keep a record of your setup.** The Brewfile is a list of everything you use. Keep it on GitHub and you can rebuild your Mac anytime, or share your setup with teammates.
+- 💼 **Great for freelancers.** Get each new client laptop ready in one step, instead of rebuilding your setup from memory.
+- ⚡ **Set up a new Mac in one go.** Run one command and walk away.
+- 🔄 **Update everything at once.** `brew upgrade` updates all your apps and tools. Apps that update themselves (like Chrome) are skipped unless you add `--greedy`.
+- 🧹 **Uninstall cleanly.** `brew uninstall --cask <app>` removes an app, and `--zap` clears its leftover settings too.
+- 🛠️ **Get tools with no Mac installer**, like `ffmpeg`, along with everything they depend on.
+- 📋 **Keep a record of your setup.** Keep the Brewfile on GitHub to rebuild your Mac anytime or share it with teammates.
 
 ## Before you wipe your old Mac
 
-Make a list of what's installed, so nothing gets forgotten on the new one. Save it somewhere that isn't the Mac you're wiping, like iCloud Drive, Dropbox or a USB drive.
+List what's installed, and save it somewhere off the Mac (iCloud Drive, Dropbox or a USB drive).
 
-If the old Mac already has Homebrew, this writes everything it installed, plus your App Store apps, into a Brewfile on your Desktop:
+This saves a Brewfile of everything from Homebrew and the App Store, plus `apps.txt`, a list of every app, including ones downloaded from websites:
 
 ```bash
-brew bundle dump --file=~/Desktop/Brewfile.old
+mkdir -p ~/Desktop/mac-backup
+brew bundle dump --file=~/Desktop/mac-backup/Brewfile
+ls /Applications > ~/Desktop/mac-backup/apps.txt
 ```
 
-Then list every app, including the ones you downloaded from websites:
+Add anything you want to keep to [personal/Brewfile](personal/Brewfile), or to [Manual installs](#manual-installs) if it isn't on Homebrew.
+
+To check what's installed at any point, list the apps installed with Homebrew, the command-line tools you installed yourself, and your Mac App Store apps:
 
 ```bash
-ls /Applications > ~/Desktop/apps.txt
-```
-
-Compare those files with this repo's Brewfiles, and add anything you want to [Brewfile.personal](Brewfile.personal). An app that isn't on Homebrew goes under [Manual installs](#manual-installs).
-
-To check what's installed at any point:
-
-```bash
-brew list --cask                      # apps installed with Homebrew
-brew leaves --installed-on-request    # command-line tools you installed yourself
-mas list                              # Mac App Store apps
+brew list --cask
+brew leaves --installed-on-request
+mas list
 ```
 
 ## Usage
 
+### Install just the apps
+
+1. Install [Homebrew](https://brew.sh):
+
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+
+   When it finishes, run the commands it shows under **Next steps**, so Terminal can find `brew`.
+
+   **On an Intel Mac**, that script refuses to run ("Homebrew on macOS is only supported on Apple Silicon processors!"). Instead:
+
+   1. Download `Homebrew.pkg` from the [Homebrew 6.0.22 release](https://github.com/Homebrew/brew/releases/tag/6.0.22), open it and follow the installer.
+   2. Check it works with `brew --version`. There's no Next steps on Intel: `/usr/local` is already on your `PATH`.
+
+   If the `.pkg` fails because an earlier attempt left a Homebrew folder behind, remove it and run the `.pkg` again. Only do this when Homebrew isn't working yet; to remove a working Homebrew, use the official [uninstall script](https://github.com/Homebrew/install#uninstall-homebrew).
+
+   ```bash
+   sudo rm -rf /usr/local/Homebrew
+   ```
+
+   Tested with Homebrew 6.0.22 on macOS 26.6. Intel is no longer supported, so some tools (e.g. `ffmpeg`) may build from source, which is slow.
+
+2. Sign into the App Store app, so the `mas` entries can install.
+3. Install everything in the Brewfile, straight from GitHub:
+
+   ```bash
+   curl -fsSL https://raw.githubusercontent.com/nosleepcreative/setup-mac/master/Brewfile | brew bundle --file=-
+   ```
+
+### Full setup
+
+To install the apps and also change Mac settings, clean up the Dock and more:
+
 1. Sign into the App Store app, so the `mas` entries can install.
-2. On an Intel Mac, install Homebrew first (see [Intel Macs](#intel-macs) below).
-3. Open Terminal and paste this in. A new Mac doesn't have `git` yet, so this downloads the repo as a zip instead:
+2. On an Intel Mac, install Homebrew first (see [step 1 above](#install-just-the-apps)).
+3. Paste this into Terminal. It downloads the repo as a zip, since a new Mac doesn't have `git` yet:
 
    ```bash
    curl -L https://github.com/nosleepcreative/setup-mac/archive/master.tar.gz | tar xz && cd setup-mac-master && zsh setup.sh
    ```
 
-[setup.sh](setup.sh) does everything in order:
+[setup.sh](setup.sh) then:
 
-- installs Homebrew, if it isn't already
-- installs everything in the Brewfile, then `Brewfile.personal` if it's there
+- installs Homebrew, if needed
+- installs the Brewfile, or `personal/Brewfile` if it's there
 - runs anything in `installers/` (see [Manual installs](#manual-installs))
 - cleans up the Dock
 - frees up ⌘Space, if Alfred or Raycast is installed
-- changes Finder, keyboard and other Mac settings (see [Mac settings](#mac-settings))
+- changes Finder, keyboard and other [Mac settings](#mac-settings)
 - links the After Effects Scripts folder into `~/Documents/Adobe`
 
-It asks for your password a few times. You can run it again. Homebrew skips anything that's already installed, but the Dock gets reset to Finder and Safari each time.
-
-To install only the Brewfile:
-
-```bash
-brew bundle --file=Brewfile
-```
-
-## Personal apps
-
-The main [Brewfile](Brewfile) is meant to suit most designers. [Brewfile.personal](Brewfile.personal) is my own list on top of it: Cinema 4D, Bambu Studio, Obsidian, OBS and so on. `setup.sh` installs it after the main Brewfile, but only if the file exists.
-
-If you're using this repo for your own Mac, either delete `Brewfile.personal` or replace its contents with your own extras. Keeping your additions in that file, rather than editing the main Brewfile, makes it easy to pull in updates to the main list later.
-
-To install only the personal list:
-
-```bash
-brew bundle --file=Brewfile.personal
-```
+It asks for your password a few times. It's safe to run again: installed apps are skipped, but the Dock is reset each time.
 
 ## Mac settings
 
-[macos.sh](scripts/macos.sh) changes a few settings that get in the way of design work:
+Each script below runs straight from GitHub, like the Homebrew installer, so you don't need to download the repo. Click its name to read it first.
+
+[macos.sh](scripts/macos.sh) changes settings that get in the way of design work:
 
 ```bash
-zsh scripts/macos.sh
+curl -fsSL https://raw.githubusercontent.com/nosleepcreative/setup-mac/master/scripts/macos.sh | zsh
 ```
 
-- **Finder:** shows file extensions, the folder path and free space, uses list view with folders first, searches the current folder, and shows `~/Library` so you can find plugin and preset folders
-- **No more `.DS_Store` files** on servers and USB drives, so client drives stay clean
-- **Saving:** saves to your Mac instead of iCloud, and opens Save dialogs fully expanded
-- **Keyboard:** faster key repeat for nudging layers with the arrow keys, and holding a key repeats it instead of showing the accent menu
-- **Dock:** hides until you point at it, and macOS stops reordering your desktops
-- **Screenshots:** saved to `~/Screenshots` instead of the Desktop, without the drop shadow
+Or from a downloaded copy of this repo: `zsh scripts/macos.sh`
 
-Log out and back in for the keyboard changes to work. Each line in the script has a comment, so delete any you don't want before running it.
+- **Finder:** shows file extensions, the path bar and free space; list view with folders first; searches the current folder; shows `~/Library` for plugin and preset folders
+- **No `.DS_Store` files** on servers and USB drives
+- **Saving:** to your Mac instead of iCloud, with Save dialogs fully expanded
+- **Keyboard:** faster key repeat for nudging layers, and holding a key repeats it instead of showing accents
+- **Dock:** hides until you point at it; macOS stops reordering your desktops
+- **Screenshots:** saved to `~/Screenshots`, without the drop shadow
+
+Log out and back in for the keyboard changes. Every line in the script is commented. To skip some, download the repo and delete those lines before running it.
 
 ### Clean up the Dock
 
-A new Mac comes with a Dock full of Apple apps. [dock.sh](scripts/dock.sh) clears it down to just Finder and Safari, removes the Downloads stack, and hides the recent apps section:
+[dock.sh](scripts/dock.sh) clears the Dock down to Finder and Safari, removes the Downloads stack and hides recent apps:
 
 ```bash
-zsh scripts/dock.sh
+curl -fsSL https://raw.githubusercontent.com/nosleepcreative/setup-mac/master/scripts/dock.sh | zsh
 ```
 
-It saves your current layout to a `dock-backup-<date>.plist` file in your home folder first. To put the old Dock back, use the file name the script printed:
+Or from a downloaded copy of this repo: `zsh scripts/dock.sh`
+
+It backs up your layout first. To restore it, use the file name it printed:
 
 ```bash
 defaults import com.apple.dock ~/dock-backup-<date>.plist && killall Dock
 ```
 
-Apps that are open still show in the Dock until you quit them. Finder and Trash always stay.
-
 ### Free up ⌘Space
 
-If you use Raycast or Alfred, [spotlight.sh](scripts/spotlight.sh) turns off Spotlight's ⌘Space shortcut so the launcher can use it instead:
+[spotlight.sh](scripts/spotlight.sh) turns off Spotlight's ⌘Space shortcut so Alfred or Raycast can use it:
 
 ```bash
-bash scripts/spotlight.sh
+curl -fsSL https://raw.githubusercontent.com/nosleepcreative/setup-mac/master/scripts/spotlight.sh | bash
 ```
 
-Then set ⌘Space as the shortcut in Raycast or Alfred's settings. Spotlight still opens from the magnifying glass in the menu bar. To turn the shortcut back on, go to System Settings → Keyboard → Keyboard Shortcuts → Spotlight.
+Or from a downloaded copy of this repo: `bash scripts/spotlight.sh`
 
-### After Effects Scripts folder
-
-After Effects keeps its scripts inside the app, at `/Applications/Adobe After Effects 20xx/Scripts`. [ae-scripts-link.sh](scripts/ae-scripts-link.sh) puts a link to that folder in `~/Documents/Adobe/After Effects 20xx` (the newest version you have), so it sits next to your presets:
-
-```bash
-zsh scripts/ae-scripts-link.sh
-```
-
-The real folder has to stay inside the app, because that's the only place After Effects loads scripts from. It belongs to the system, so Finder asks for your password when you add scripts through the link.
-
-The `~/Documents` folder only appears after you open After Effects once. If it's missing, open After Effects and run the script again.
-
-## Intel Macs
-
-The official install script now refuses to run on Intel Macs:
-
-```
-Homebrew on macOS is only supported on Apple Silicon processors!
-```
-
-### Workaround: use the `.pkg` installer
-
-1. Download `Homebrew.pkg` from the [Homebrew 6.0.22 release](https://github.com/Homebrew/brew/releases/tag/6.0.22).
-2. Open it and follow the installer.
-3. Check that it works:
-
-   ```bash
-   brew --version
-   ```
-
-On Intel, Homebrew installs to `/usr/local`, which is already on your `PATH`, so there's no `brew shellenv` step.
-
-Tested with Homebrew 6.0.22 on macOS 26.6 (Intel). Intel Macs are no longer a supported Homebrew platform, so expect some formulae (e.g. `ffmpeg`, `imagemagick`) to build from source, which can be slow.
-
-### Issue: existing Homebrew folder
-
-If an earlier install attempt left a Homebrew folder behind, the `.pkg` installer fails. Remove the leftover install, then run the `.pkg` again:
-
-```bash
-sudo rm -rf /usr/local/Homebrew
-```
-
-Only do this when Homebrew isn't working yet. It deletes the Homebrew installation. If you have a working Homebrew you want to remove cleanly, use the official [uninstall script](https://github.com/Homebrew/install#uninstall-homebrew) instead.
+Then set ⌘Space in the launcher's settings. Spotlight still opens from the menu bar. To undo, go to System Settings → Keyboard → Keyboard Shortcuts → Spotlight.
 
 ## Manual installs
 
-These aren't available through Homebrew:
+These aren't on Homebrew:
 
 - [DaVinci Resolve](https://www.blackmagicdesign.com/products/davinciresolve)
 - [aescripts + aeplugins Manager](https://aescripts.com/learn/aescripts-aeplugins-manager-app/) ([download .dmg](https://updates.aescripts.com/updater/mac/aescripts%20+%20aeplugins%20manager%20(setup).dmg))
 - [Overlord](https://www.battleaxe.co/overlord) ([download .dmg](https://overlord-release.battleaxe.co/download/dmg)): sends shapes from Illustrator straight into After Effects
 
-Download their `.dmg` or `.pkg` files into the `installers/` folder. If they're there before you run `setup.sh`, it installs them for you. Otherwise, install them all in one go:
+Put their `.dmg` or `.pkg` files in `installers/` and `setup.sh` installs them. Or install them yourself, all at once or one at a time:
 
 ```bash
 zsh scripts/install-manual.sh
-```
-
-Or install just one:
-
-```bash
 zsh scripts/install-manual.sh "installers/aescripts + aeplugins manager (setup).dmg"
 ```
 
-For each file, the script either copies the app into Applications, runs the `.pkg` (macOS asks for your password), or opens the app's own installer and waits for you to finish it.
+The script copies each app into Applications, runs the `.pkg`, or opens the app's installer and waits for you to finish.
 
-The `installers/` folder isn't uploaded to GitHub. The files are large and belong to other companies, so download fresh copies on each new Mac.
+`installers/` isn't uploaded to GitHub, so download fresh copies on each new Mac.
+
+## After Effects Scripts folder
+
+After Effects only loads scripts from inside the app (`/Applications/Adobe After Effects 20xx/Scripts`). [ae-scripts-link.sh](scripts/ae-scripts-link.sh) links that folder into `~/Documents/Adobe/After Effects 20xx`, next to your presets:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/nosleepcreative/setup-mac/master/scripts/ae-scripts-link.sh | zsh
+```
+
+Or from a downloaded copy of this repo: `zsh scripts/ae-scripts-link.sh`
+
+Finder asks for your password when you add scripts through the link. If the `~/Documents` folder is missing, open After Effects once and run the script again.
+
+## Personal apps
+
+[personal/Brewfile](personal/Brewfile) is my own setup. It loads the whole main Brewfile, then adds my extras: Bambu Studio, Obsidian, OBS and so on. When the file is there, `setup.sh` installs it instead of the main Brewfile.
+
+For your own Mac, delete it or replace my extras with yours. Keep the `instance_eval` line at the top, which loads the main Brewfile. Keeping additions there, rather than in the main Brewfile, makes it easy to pull in updates later.
+
+```bash
+brew bundle --file=personal/Brewfile
+```
