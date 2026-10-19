@@ -109,7 +109,6 @@ To install the apps and also change Mac settings, clean up the Dock and more:
 - cleans up the Dock
 - frees up ⌘Space, if Alfred or Raycast is installed
 - changes Finder, keyboard and other [Mac settings](#mac-settings)
-- links the After Effects Scripts folder into `~/Documents/Adobe`
 
 It asks for your password a few times. It's safe to run again: installed apps are skipped, but the Dock is reset each time.
 

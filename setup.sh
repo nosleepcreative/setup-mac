@@ -74,9 +74,6 @@ fi
 step "Finder, keyboard and other settings"
 zsh scripts/macos.sh
 
-step "After Effects Scripts folder"
-zsh scripts/ae-scripts-link.sh
-
 # ── Done ──────────────────────────────────────────────────────────────────────
 step "Done"
 if (( failed_bundle )); then
