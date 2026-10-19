@@ -181,18 +181,6 @@ The script copies each app into Applications, runs the `.pkg`, or opens the app'
 
 `installers/` isn't uploaded to GitHub, so download fresh copies on each new Mac.
 
-## After Effects Scripts folder
-
-After Effects only loads scripts from inside the app (`/Applications/Adobe After Effects 20xx/Scripts`). [ae-scripts-link.sh](scripts/ae-scripts-link.sh) links that folder into `~/Documents/Adobe/After Effects 20xx`, next to your presets:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/nosleepcreative/setup-mac/master/scripts/ae-scripts-link.sh | zsh
-```
-
-Or from a downloaded copy of this repo: `zsh scripts/ae-scripts-link.sh`
-
-Finder asks for your password when you add scripts through the link. If the `~/Documents` folder is missing, open After Effects once and run the script again.
-
 ## Personal apps
 
 [personal/Brewfile](personal/Brewfile) is my own setup. It loads the whole main Brewfile, then adds my extras: Bambu Studio, Obsidian, OBS and so on. When the file is there, `setup.sh` installs it instead of the main Brewfile.
