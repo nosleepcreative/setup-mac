@@ -167,8 +167,8 @@ Then set ⌘Space in the launcher's settings. Spotlight still opens from the men
 These aren't on Homebrew:
 
 - [DaVinci Resolve](https://www.blackmagicdesign.com/products/davinciresolve)
-- [aescripts + aeplugins Manager](https://aescripts.com/learn/aescripts-aeplugins-manager-app/) ([download .dmg](https://updates.aescripts.com/updater/mac/aescripts%20+%20aeplugins%20manager%20(setup).dmg))
-- [Overlord](https://www.battleaxe.co/overlord) ([download .dmg](https://overlord-release.battleaxe.co/download/dmg)): sends shapes from Illustrator straight into After Effects
+- [aescripts + aeplugins Manager](https://aescripts.com/learn/aescripts-aeplugins-manager-app/) ([dmg](https://updates.aescripts.com/updater/mac/aescripts%20+%20aeplugins%20manager%20(setup).dmg))
+- [Overlord](https://www.battleaxe.co/overlord) ([dmg](https://overlord-release.battleaxe.co/download/dmg))
 
 Put their `.dmg` or `.pkg` files in `installers/` and `setup.sh` installs them. Or install them yourself, all at once or one at a time:
 
