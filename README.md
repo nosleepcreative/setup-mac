@@ -94,6 +94,7 @@ To install the apps and also change Mac settings, clean up the Dock and more:
 
 [setup.sh](setup.sh) then:
 
+- installs the Xcode Command Line Tools (`git`, compilers), if needed. Click **Install** in the window that pops up
 - installs Homebrew, if needed
 - installs the Brewfile, or `personal/Brewfile` if it's there
 - runs anything in `installers/` (see [Manual installs](#manual-installs))

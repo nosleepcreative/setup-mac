@@ -1,5 +1,5 @@
 #!/bin/zsh
-# Set up a new Mac in one go: Homebrew, the Brewfile (or personal/Brewfile if it's there), manual installers,
+# Set up a new Mac in one go: Xcode Command Line Tools, Homebrew, the Brewfile (or personal/Brewfile if it's there), manual installers,
 # the Dock, Spotlight and Mac settings.
 # Safe to run again: installed apps are skipped, but the Dock gets reset each time.
 #
@@ -10,6 +10,17 @@ setopt null_glob
 cd "${0:A:h}"
 
 step() { print -P "\n%B==> $1%b"; }
+
+# ── Xcode Command Line Tools ──────────────────────────────────────────────────
+# git, compilers and make. Homebrew needs them, and the Intel .pkg doesn't install them.
+step "Xcode Command Line Tools"
+if xcode-select -p &>/dev/null; then
+  echo "Already installed."
+else
+  xcode-select --install
+  echo "Click Install in the window that opened. Waiting for it to finish..."
+  until xcode-select -p &>/dev/null; do sleep 5; done
+fi
 
 # ── Homebrew ──────────────────────────────────────────────────────────────────
 step "Homebrew"
