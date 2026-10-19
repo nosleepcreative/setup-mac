@@ -50,14 +50,6 @@ step "Installing $brewfile (this takes a while)"
 # Keep going if a few items fail, e.g. App Store apps when you're not signed in
 brew bundle --file=$brewfile || failed_bundle=1
 
-# ── Xcode ─────────────────────────────────────────────────────────────────────
-# Only if the Brewfile installed the full Xcode app (personal/Brewfile does)
-if [[ -d /Applications/Xcode.app ]]; then
-  step "Xcode"
-  echo "Accepting the Xcode license and installing its extra components (macOS will ask for your password)"
-  sudo xcodebuild -license accept && sudo xcodebuild -runFirstLaunch || echo "Xcode setup failed. Open Xcode once to finish it."
-fi
-
 # ── Manual installers ─────────────────────────────────────────────────────────
 step "Manual installers"
 installers=( installers/*.(dmg|pkg) )

@@ -41,7 +41,6 @@ cask "keycastr"   # shows your keystrokes on screen, for tutorials
 cask "claude"       # Claude desktop app
 cask "claude-code"  # Claude Code in the terminal
 cask "visual-studio-code"
-# mas "Xcode", id: 497799835  # full Xcode, 10+ GB. Only for iOS/Mac apps; setup.sh installs the small Command Line Tools
 
 # ── Command-line Tools ────────────────────────────────────────────────────────
 brew "ffmpeg"  # convert and compress video and audio
