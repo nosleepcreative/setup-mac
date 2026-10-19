@@ -94,7 +94,7 @@ To install the apps and also change Mac settings, clean up the Dock and more:
 
 1. Sign into the App Store app, so the `mas` entries can install.
 2. On an Intel Mac, install the Command Line Tools and Homebrew first (see [steps 1 and 2 above](#install-just-the-apps)).
-3. Paste this into Terminal. It downloads the repo as a zip, since a new Mac doesn't have `git` yet:
+3. Paste this into Terminal. It downloads the repo as an archive, since a new Mac doesn't have `git` yet:
 
    ```bash
    curl -fsSL https://github.com/nosleepcreative/setup-mac/archive/master.tar.gz | tar xz && cd setup-mac-master && zsh setup.sh
