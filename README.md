@@ -97,7 +97,7 @@ To install the apps and also change Mac settings, clean up the Dock and more:
 3. Paste this into Terminal. It downloads the repo as a zip, since a new Mac doesn't have `git` yet:
 
    ```bash
-   curl -L https://github.com/nosleepcreative/setup-mac/archive/master.tar.gz | tar xz && cd setup-mac-master && zsh setup.sh
+   curl -fsSL https://github.com/nosleepcreative/setup-mac/archive/master.tar.gz | tar xz && cd setup-mac-master && zsh setup.sh
    ```
 
 [setup.sh](setup.sh) then:
