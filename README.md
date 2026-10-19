@@ -52,7 +52,15 @@ mas list
 
 ### Install just the apps
 
-1. Install [Homebrew](https://brew.sh):
+1. Install the Xcode Command Line Tools (`git`, compilers). Homebrew needs them:
+
+   ```bash
+   xcode-select --install
+   ```
+
+   Click **Install** in the window that pops up and wait for it to finish. If it says they're already installed, move on.
+
+2. Install [Homebrew](https://brew.sh):
 
    ```bash
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -73,8 +81,8 @@ mas list
 
    Tested with Homebrew 6.0.22 on macOS 26.6. Intel is no longer supported, so some tools (e.g. `ffmpeg`) may build from source, which is slow.
 
-2. Sign into the App Store app, so the `mas` entries can install.
-3. Install everything in the Brewfile, straight from GitHub:
+3. Sign into the App Store app, so the `mas` entries can install.
+4. Install everything in the Brewfile, straight from GitHub:
 
    ```bash
    curl -fsSL https://raw.githubusercontent.com/nosleepcreative/setup-mac/master/Brewfile | brew bundle --file=-
@@ -85,7 +93,7 @@ mas list
 To install the apps and also change Mac settings, clean up the Dock and more:
 
 1. Sign into the App Store app, so the `mas` entries can install.
-2. On an Intel Mac, install Homebrew first (see [step 1 above](#install-just-the-apps)).
+2. On an Intel Mac, install the Command Line Tools and Homebrew first (see [steps 1 and 2 above](#install-just-the-apps)).
 3. Paste this into Terminal. It downloads the repo as a zip, since a new Mac doesn't have `git` yet:
 
    ```bash
