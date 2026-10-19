@@ -94,8 +94,10 @@ To install the apps and also change Mac settings, clean up the Dock and more:
 
 [setup.sh](setup.sh) then:
 
+- installs the Xcode Command Line Tools (`git`, compilers), if needed. Click **Install** in the window that pops up
 - installs Homebrew, if needed
 - installs the Brewfile, or `personal/Brewfile` if it's there
+- accepts the Xcode license, if the Brewfile installed Xcode
 - runs anything in `installers/` (see [Manual installs](#manual-installs))
 - cleans up the Dock
 - frees up ⌘Space, if Alfred or Raycast is installed
@@ -186,7 +188,7 @@ Finder asks for your password when you add scripts through the link. If the `~/D
 
 ## Personal apps
 
-[personal/Brewfile](personal/Brewfile) is my own setup. It loads the whole main Brewfile, then adds my extras: Bambu Studio, Obsidian, OBS and so on. When the file is there, `setup.sh` installs it instead of the main Brewfile.
+[personal/Brewfile](personal/Brewfile) is my own setup. It loads the whole main Brewfile, then adds my extras: Bambu Studio, Obsidian, OBS, Xcode and so on. When the file is there, `setup.sh` installs it instead of the main Brewfile.
 
 For your own Mac, delete it or replace my extras with yours. Keep the `instance_eval` line at the top, which loads the main Brewfile. Keeping additions there, rather than in the main Brewfile, makes it easy to pull in updates later.
 

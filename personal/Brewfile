@@ -30,6 +30,7 @@ mas "Magnet", id: 441258766
 mas "Folder Quick Look", id: 6753110395
 mas "Spreadsheet", id: 1518721142  # shows as FormMaster in Applications
 mas "Pro Mouse – Cursor Highlighter", id: 1505869474
+mas "Xcode", id: 497799835  # 10+ GB; setup.sh accepts the license afterwards
 
 # ── Languages & Runtimes ──────────────────────────────────────────────────────
 # brew "python@3.8", link: false  # removed from Homebrew — use `uv python install 3.8` instead
